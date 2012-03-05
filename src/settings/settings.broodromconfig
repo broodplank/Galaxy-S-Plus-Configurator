@@ -1,0 +1,5 @@
+[options]
+enablecheck=0
+updatecheck=0
+safemode=1
+autopause=1

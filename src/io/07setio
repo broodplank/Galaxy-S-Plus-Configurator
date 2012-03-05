@@ -1,0 +1,5 @@
+#!/system/bin/sh
+#broodROM RC2
+
+echo "vr" > /sys/block/mmcblk0/queue/scheduler
+echo "vr" > /sys/block/mmcblk1/queue/scheduler
