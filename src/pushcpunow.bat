@@ -14,8 +14,7 @@ adb remount
 cls
 echo.
 adb push "cpu/scaling_governor" "/sys/devices/system/cpu/cpu0/cpufreq/scaling_governor"
-adb -d shell chmod 666 "/sys/devices/system/cpu/cpu0/cpufreq/scaling_governor"
-adb -d shell su -c "busybox dos2unix /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor"
+adb -d shell chmod 664 "/sys/devices/system/cpu/cpu0/cpufreq/scaling_governor"
 echo.
 echo Done... A reboot is necessary for the changes to take effect
 echo.

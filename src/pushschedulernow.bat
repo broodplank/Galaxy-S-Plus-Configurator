@@ -15,10 +15,8 @@ cls
 echo.
 adb push "io/scheduler" "/sys/block/mmcblk0/queue/scheduler"
 adb push "io/scheduler" "/sys/block/mmcblk1/queue/scheduler"
-adb -d shell chmod 666 "/sys/block/mmcblk0/queue/scheduler"
-adb -d shell chmod 666 "/sys/block/mmcblk1/queue/scheduler"
-adb -d shell su -c "busybox dos2unix /sys/block/mmcblk0/queue/scheduler"
-adb -d shell su -c "busybox dos2unix /sys/block/mmcblk1/queue/scheduler"
+adb -d shell chmod 664 "/sys/block/mmcblk0/queue/scheduler"
+adb -d shell chmod 664 "/sys/block/mmcblk1/queue/scheduler"
 echo.
 echo Done... A reboot is necessary for the changes to take effect
 echo.

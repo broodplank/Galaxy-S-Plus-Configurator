@@ -1,0 +1,57 @@
+#!/system/bin/sh
+#ThunderBolt!
+
+# =========
+# Siyah (or any kernel that uses Siyah Bus/GPU/CPUFreq settings)
+# =========
+#hotplug parameters
+if [ -e /sys/module/pm_hotplug/parameters/loadl ]; then
+	echo 40 > /sys/module/pm_hotplug/parameters/loadl;
+	echo 90 > /sys/module/pm_hotplug/parameters/loadh;
+	echo 50 > /sys/module/pm_hotplug/parameters/loadl_scroff;
+	echo 100 > /sys/module/pm_hotplug/parameters/loadh_scroff;
+	echo 200 > /sys/module/pm_hotplug/parameters/rate;
+	echo 800 > /sys/module/pm_hotplug/parameters/rate_cpuon;
+	echo 800 > /sys/module/pm_hotplug/parameters/rate_scroff;
+	echo 500000 > /sys/module/pm_hotplug/parameters/freq_cpu1on;
+fi;
+
+#smooth scaling parameters
+if [ -e /sys/devices/system/cpu/cpu0/cpufreq/smooth_target ]; then
+	echo 0 > /sys/devices/system/cpu/cpu0/cpufreq/smooth_target;
+	echo 0 > /sys/devices/system/cpu/cpu0/cpufreq/smooth_offset;
+	echo 0 > /sys/devices/system/cpu/cpu0/cpufreq/smooth_step;
+fi;
+
+#enable sched_mc
+if [ -e /sys/devices/system/cpu/sched_mc_power_savings ]; then 
+	echo 1 > /sys/devices/system/cpu/sched_mc_power_savings;
+fi;
+
+#enable AFTR
+if [ -e /sys/module/cpuidle/parameters/enable_mask ]; then 
+	echo 3 > /sys/module/cpuidle/parameters/enable_mask;
+fi;
+
+#brightness settings
+if [ -e /sys/class/misc/brightness_curve/min_bl ]; then 
+	echo 20 > /sys/class/misc/brightness_curve/min_bl;
+	echo 1 > /sys/class/misc/brightness_curve/min_gamma;
+	echo 24 > /sys/class/misc/brightness_curve/max_gamma;
+fi;
+
+#Disabled! Each phone has its own stable settings on these. Enable it on your own accord!
+
+#deepsleep levels
+#echo 4 > /sys/devices/system/cpu/cpu0/cpufreq/deepsleep_cpulevel;
+#echo 1 > /sys/devices/system/cpu/cpu0/cpufreq/deepsleep_buslevel;
+
+#gpu clock, threshold and voltage
+#echo "160 267 300" > /sys/class/misc/gpu_clock_control/gpu_control;
+#echo "70% 40% 80% 60%" > /sys/class/misc/gpu_clock_control/gpu_control;
+#echo "950000 1000000 1100000" > /sys/class/misc/gpu_voltage_control/gpu_control;
+
+#static bus frequency
+#echo "0 0 0 0 1 2 2 2" > /sys/devices/system/cpu/cpu0/cpufreq/busfreq_static;
+#echo disabled > /sys/devices/system/cpu/cpu0/cpufreq/busfreq_static;
+

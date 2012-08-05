@@ -1,0 +1,21 @@
+#!/system/bin/sh
+#ThunderBolt!
+
+mount -o noatime,remount,ro rootfs /;
+mount -o noatime,remount,rw proc /proc;
+mount -o noatime,remount,rw sysfs /sys;
+mount -o noatime,remount,rw,discard,barrier=0,commit=60,noauto_da_alloc,delalloc /cache /cache;
+mount -o noatime,remount,rw,discard,barrier=0,commit=60,noauto_da_alloc,delalloc /dbdata /dbdata;
+mount -o noatime,remount,rw,discard,barrier=0,commit=60,noauto_da_alloc,delalloc /data /data;
+mount -o noatime,remount,ro,discard /system /system;
+mount -o noatime,remount,rw /dev /dev;
+mount -o noatime,remount,rw /dev/pts /dev/pts;
+mount -o noatime,remount,rw /mnt/asec /mnt/asec;
+mount -o noatime,remount,rw /mnt/obb /mnt/obb;
+mount -o noatime,remount,rw /efs /efs;
+mount -o noatime,remount,rw /mnt/.lfs /mnt/.lfs;
+mount -o noatime,remount,rw /sys/kernel/debug /sys/kernel/debug;
+mount >> /sdcard/fsck.log;
+echo "Remount Done! Please see /sdcard/fsck.log for your new mount options.";
+echo "If this script works, you'll see most of your mounts being noatime, and";
+echo "/data, /dbdata and /cache having barrier=0 and commit=60.";

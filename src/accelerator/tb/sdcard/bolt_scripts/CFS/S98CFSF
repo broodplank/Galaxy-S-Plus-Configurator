@@ -1,0 +1,9 @@
+#!/system/bin/sh
+sync;
+echo 3 > /proc/sys/vm/drop_caches;
+sleep 1;
+echo 0 > /proc/sys/vm/drop_caches;
+echo "Caches are dropped!";
+echo 200000 > /proc/sys/kernel/sched_min_granularity_ns;
+echo 1000000 > /proc/sys/kernel/sched_latency_ns;
+echo 200000 > /proc/sys/kernel/sched_wakeup_granularity_ns;
